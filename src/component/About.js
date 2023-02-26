@@ -1,9 +1,50 @@
-import { Fragment } from "react";
+import { Fragment,useRef,useState } from "react";
+import classes from './About.module.css';
+import axios from "axios";
 const About=()=>{
+    const [mail,setMail]=useState('')
+    const [text,setText]=useState('')
+    const [title,setTitle]=useState('')
+    const ExecuteEmail=(event)=>{
+        event.preventDefault();
+        setMail(event.target.value)
+    }
+    const ExecuteText=(event)=>{
+        event.preventDefault();
+        setText(event.target.value)
+    }
+    const ExecuteTitle=(event)=>{
+        event.preventDefault();
+        setTitle(event.target.value);
+    }
+    const SubmitHandler=(event)=>{
+        event.preventDefault();
+        const user=mail.replace('.','q');
+        const users=user.replace('@','s')
+        const expenceData={
+            text:text,
+            title:title
+        }
+        axios.post(`https://add-movies-c908f-default-rtdb.firebaseio.com/${users}.json`,expenceData)
+        .then((res)=>{
+            
+        })  
+
+    }
+
     return(
-        <Fragment>
-            <h1>Welcome to mail</h1>
-        </Fragment>
+       
+        <form onSubmit={SubmitHandler}>
+            <label>to</label>
+            <input type='mail' onChange={ExecuteEmail} value={mail}/>
+            <hr style={{height:'5px'}}/>
+            <input type='text' onChange={ExecuteTitle} value={title}/>  
+            <hr/> 
+            <textarea rows='25'cols='150' onChange={ExecuteText} value={text}/> 
+            <hr/>
+            <button>Send</button>      
+        </form>
+        
     )
 }
 export default About;
