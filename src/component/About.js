@@ -19,11 +19,13 @@ const About=()=>{
     }
     const SubmitHandler=(event)=>{
         event.preventDefault();
+        
         const user=mail.replace('.','q');
         const users=user.replace('@','s')
         const expenceData={
             text:text,
-            title:title
+            title:title,
+            id:Math.random().toString()
         }
         axios.post(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`,expenceData)
         .then((res)=>{

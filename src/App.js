@@ -3,6 +3,7 @@ import Layout from "./component/Layout/Layout";
 import { Route,Routes} from "react-router-dom";
 import About from "./component/About";
 import Inbox from "./component/Inbox";
+import InboxDetails from "./component/InboxDetails";
 function App() {
   return (
     <div>
@@ -11,6 +12,7 @@ function App() {
           <Route path="signup" element={<Signup/>} />
           <Route path="about" element={<About/>} />
           <Route path='inbox' element={<Inbox/>}/>
+          <Route path='/inbox/:productId' element={<InboxDetails/>}/>
         </Route>
       </Routes>
       

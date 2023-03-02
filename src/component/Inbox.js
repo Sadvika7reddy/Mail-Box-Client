@@ -1,7 +1,12 @@
 import {useState} from 'react'
+import { Link } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
+import { formAction } from './store/context';
 import axios from 'axios';
 const Inbox=()=>{
     const[value,setValue]=useState([]);
+    const userLoggin=useSelector(state=>state.for.isForm)
+    const dispatch=useDispatch();
     const userEmail=localStorage.getItem('email');
     const user=userEmail.replace('.','q');
     const users=user.replace('@','s')
@@ -17,12 +22,21 @@ const Inbox=()=>{
            }
            setValue(fetch)
       })
-    return(
+      const changeHandler=(id)=>{
+
+        dispatch(formAction.close(id))
+
+      }
+    return( 
         <div>
             <ul>
                 {value.map((user)=>(
                     <li>
-                        <h1>{user.title}</h1>
+                        <h2>
+                        {userLoggin&&<p>w</p>}
+                            <Link to={`/inbox/${user.id}`}>
+                                <button onClick={()=>changeHandler(user.id)}>{user.title}</button>
+                                </Link></h2>
                     </li>
                 ))}
             </ul>
