@@ -27,6 +27,14 @@ const Inbox=()=>{
         dispatch(formAction.close(id))
 
       }
+      const deleteHandler=async (id)=>{
+        const userEmail=localStorage.getItem('email');
+        const user=userEmail.replace('.','q');
+        const users=user.replace('@','s')
+        
+      let res=await axios.delete(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}/${id}.json`) 
+    }
+
     return( 
         <div>
             <ul>
@@ -37,6 +45,8 @@ const Inbox=()=>{
                             <Link to={`/inbox/${user.id}`}>
                                 <button onClick={()=>changeHandler(user.id)}>{user.title}</button>
                                 </Link></h2>
+                                <button type='submit' style={{background: "Tomato"}} onClick={()=>{deleteHandler(user.id)}}>Delete</button>
+        
                     </li>
                 ))}
             </ul>
