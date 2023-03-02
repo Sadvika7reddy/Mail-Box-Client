@@ -17,13 +17,13 @@ const Signup= () => {
     event.preventDefault();
     const enteredEmail=emailInputRef.current.value;
     const enteredPassword=passwordInputRef.current.value;
-    
+    localStorage.setItem('email',enteredEmail)
     let url;
     if(isLogin){
-      url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCewUWbgztJYjhsb5UEmf3Ni6T_ehpNmXQ';
+      url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHlHuQVHJu1GnzUaxpeRY7tUAt_uoULZQ';
     }
     else{
-      url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCewUWbgztJYjhsb5UEmf3Ni6T_ehpNmXQ'
+      url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHlHuQVHJu1GnzUaxpeRY7tUAt_uoULZQ'
     }
       fetch(url,{
         method:'POST',
@@ -64,7 +64,7 @@ const Signup= () => {
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form onSubmit={SubmitHandler}>
+      <form onSubmit={SubmitHandler}  >
         <div className={classes.control}>
           <label htmlFor='email'>Email</label>
           <input type='email' id='email' required ref={emailInputRef}/><br/>
@@ -77,10 +77,12 @@ const Signup= () => {
         </div>
         <div className={classes.actions}>
           <div>
-          <button onClick={()=>navigate("/about")}>{isLogin ? 'Login' : 'Create Account'} </button><br/>
+          <button type='submit'  >{isLogin ? 'Login' : 'Create Account'} </button><br/>
+         
           &nbsp;
           </div>
           <div>
+          <button onClick={()=>navigate("/about")}>s</button>
           <button
             type='button'
             className={classes.toggle}

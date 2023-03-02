@@ -1,5 +1,5 @@
-import { Fragment,useRef,useState } from "react";
-import classes from './About.module.css';
+import { useState } from 'react';
+
 import axios from "axios";
 const About=()=>{
     const [mail,setMail]=useState('')
@@ -25,7 +25,7 @@ const About=()=>{
             text:text,
             title:title
         }
-        axios.post(`https://add-movies-c908f-default-rtdb.firebaseio.com/${users}.json`,expenceData)
+        axios.post(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`,expenceData)
         .then((res)=>{
             
         })  

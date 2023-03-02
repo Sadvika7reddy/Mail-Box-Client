@@ -12,6 +12,9 @@ const Layout = () => {
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to='/inbox'>inbox</Link>
+          </li>
         </ul>
       </nav>
       </header>
