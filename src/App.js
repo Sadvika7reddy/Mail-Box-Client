@@ -5,6 +5,7 @@ import About from "./component/About";
 import Inbox from "./component/Inbox";
 import InboxDetails from "./component/InboxDetails";
 import Sent from "./component/Sent";
+import SentDetails from "./component/SentDetails";
 function App() {
   return (
     <div>
@@ -15,6 +16,7 @@ function App() {
           <Route path='inbox' element={<Inbox/>}/>
           <Route path='/inbox/:productId' element={<InboxDetails/>}/>
           <Route path='sent' element={<Sent/>}/>
+          <Route path='/sent/:productId' element={<SentDetails/>}/>
         </Route>
       </Routes>
       

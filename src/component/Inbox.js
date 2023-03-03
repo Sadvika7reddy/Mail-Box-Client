@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { formAction } from './store/context';
@@ -11,7 +11,7 @@ const Inbox=()=>{
     const user=userEmail.replace('.','q');
     const users=user.replace('@','s')
    
-      axios.get(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`)
+    axios.get(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`)
       .then((res)=>{
            const fetch=[];
            for(let key in res.data){
@@ -22,11 +22,15 @@ const Inbox=()=>{
            }
            setValue(fetch)
       })
+
+  
+      
       const changeHandler=(id)=>{
 
         dispatch(formAction.close(id))
 
       }
+      
       const deleteHandler=async (id)=>{
         const userEmail=localStorage.getItem('email');
         const user=userEmail.replace('.','q');
