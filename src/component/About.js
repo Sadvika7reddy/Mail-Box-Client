@@ -20,7 +20,9 @@ const About=()=>{
     const SubmitHandler=(event)=>{
         event.preventDefault();
         
+        
         const user=mail.replace('.','q');
+       
         const users=user.replace('@','s')
         const expenceData={
             text:text,
@@ -30,15 +32,20 @@ const About=()=>{
         axios.post(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`,expenceData)
         .then((res)=>{
             
-        })  
+        }) 
+        const userEmail=localStorage.getItem('email');
+    const usere=userEmail.replace('.','e');
+    const userse=usere.replace('@','r')
+    axios.post(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${userse}.json`,expenceData)          
 
     }
-
+    
     return(
        
         <form onSubmit={SubmitHandler}>
             <label>to</label>
             <input type='mail' onChange={ExecuteEmail} value={mail}/>
+            
             <hr style={{height:'5px'}}/>
             <input type='text' onChange={ExecuteTitle} value={title}/>  
             <hr/> 

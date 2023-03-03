@@ -23,6 +23,9 @@ const Layout = () => {
             <Link to='/inbox'>inbox</Link>
           </li>
           <li>
+            <Link to='/sent'>Sent</Link>
+          </li>
+          <li>
           <button onClick={LogoutHandler}>Logout</button>
         </li>
         </ul>

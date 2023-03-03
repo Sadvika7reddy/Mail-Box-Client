@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { formAction } from './store/context';
 import axios from 'axios';
-const Inbox=()=>{
+const Sent=()=>{
     const[value,setValue]=useState([]);
     const userLoggin=useSelector(state=>state.for.isForm)
     const dispatch=useDispatch();
     const userEmail=localStorage.getItem('email');
-    const user=userEmail.replace('.','q');
-    const users=user.replace('@','s')
+    const user=userEmail.replace('.','e');
+    const users=user.replace('@','r')
    
       axios.get(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}.json`)
       .then((res)=>{
@@ -33,6 +33,7 @@ const Inbox=()=>{
         const users=user.replace('@','s')
         
       let res=await axios.delete(`https://mailbox-31eb0-default-rtdb.firebaseio.com/${users}/${id}.json`) 
+      
     }
 
     return( 
@@ -53,4 +54,4 @@ const Inbox=()=>{
         </div>
     )
 }
-export default Inbox;
+export default Sent;
